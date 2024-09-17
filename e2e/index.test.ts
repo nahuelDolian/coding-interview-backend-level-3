@@ -227,7 +227,7 @@ describe('E2E Tests', () => {
         })
     })
 
-    afterEach(() => {
+    afterAll(() => {
         return server.stop()
     })
 })
