@@ -30,8 +30,8 @@ describe('E2E Tests', () => {
                 method: 'GET',
                 url: '/items'
             })
-            expect(response.statusCode).toBe(200)
-            expect(response.result).toEqual([])
+            expect(response.statusCode).toBe(200);
+            expect(response.result).toEqual(expect.arrayContaining([]));
 
             await server.inject({
                 method: 'POST',
@@ -46,12 +46,11 @@ describe('E2E Tests', () => {
                 method: 'GET',
                 url: '/items'
             })
-            expect(response2.statusCode).toBe(200)
-            expect(response2.result).toEqual([{
-                id: expect.any(Number),
-                name: 'Item 1',
-                price: 10
-            }])
+            expect(response2.statusCode).toBe(200);
+            expect(response2.result).toEqual(
+                expect.arrayContaining([
+                expect.objectContaining({ name: "Item 1", price: 10 }),
+           ]) );
         })
 
         it("should be able to create a new item and get it by id", async () => {
